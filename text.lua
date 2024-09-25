@@ -1,48 +1,6 @@
--- Variável para controlar o estado do script
-local scriptAtivo = false
+-- Script dentro de um ServerScript
+local Players = game:GetService("Players")
 
--- Função que executa a lógica do script
-function minhaFuncao()
-
-    -- Criando um alvo que se move aleatoriamente
-local target = Instance.new("Part")
-target.Parent = workspace
-target.CanCollide = false
-target.Size = Vector3.new(2, 2, 2)
-
-while true do
-    target.Position = Vector3.new(math.random(-100, 100), 10, math.random(-100, 100))
-    wait(1)
-end
-
-    print("Script está ativo!")
-end
-
--- Criando a interface
-local ScreenGui = game.StarterGui:FindFirstChild("ScreenGui")
-if not ScreenGui then
-    ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Parent = game.StarterGui
-end
-
-local Button = Instance.new("TextButton")
-Button.Parent = ScreenGui
-Button.Position = UDim2.new(0.5, 0, 0.8, 0) -- Ajusta a posição do botão
-Button.Size = UDim2.new(0.2, 0, 0.1, 0)
-Button.Text = "Ativar/Desativar Script"
-
--- Conectando o clique do botão a uma função
-Button.MouseButton1Click:Connect(function()
-    scriptAtivo = not scriptAtivo
-    if scriptAtivo then
-        Button.Text = "Desativar Script"
-        -- Iniciar o script
-        while scriptAtivo do
-            minhaFuncao()
-            wait(1) -- Ajuste o tempo de espera conforme necessário
-        end
-    else
-        Button.Text = "Ativar Script"
-        -- Parar o script (o loop while será interrompido)
-    end
+Players.PlayerAdded:Connect(function(player)
+    player.Humanoid.TextColor = Color3.fromRGB(255, 0, 0) -- Muda a cor para vermelho
 end)
