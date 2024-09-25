@@ -170,6 +170,6 @@ RunService.RenderStepped:Connect(function()
     if closest and closest.Character:FindFirstChild("Head") then
         lookAt(closest.Character.Head.Position)
     end
-end))
+end)
   end
 })
